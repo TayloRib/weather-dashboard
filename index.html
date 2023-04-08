@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+    <title>Weather Dashboard</title>
+  </head>
+
+  <body>
+    <header>
+        <div>
+            <h1>Weather Dashboard</h1>
+        </div>
+    </header>
+    <main>
+        <div id="city">
+            <h2><b>Search for a City:</b></h2>
+            <form>
+                <input id="searchinput" type="text" placeholder="San Diego"><br>
+                <button id="search">Search</button>
+                <hr>
+            </form>
+        </div>
+        <div id="weatherdata" style="display: none;">
+            <div id="cityinfo">
+                <h2 id="cityname"></h2>
+                <img id="icon" width="60px"></img>
+                <p id="temp"></p>
+                <p id="wind"></p>
+                <p id="humid"></p>
+            </div>
+            <div id="forcast">
+                <h3>5-Day Forecast</h3>
+                <div id="cardholder">
+                <div id="day">
+                    <h4 id="date2"></h4>
+                    <img id="icon2" width="60px"></img>
+                    <p id="temp2"></p>
+                    <p id="wind2"></p>
+                    <p id="humid2"></p>
+                </div>
+                <div id="day">
+                    <h4 id="date3"></h4>
+                    <img id="icon3" width="60px"></img>
+                    <p id="temp3"></p>
+                    <p id="wind3"></p>
+                    <p id="humid3"></p>
+                </div>
+                <div id="day">
+                    <h4 id="date4"></h4>
+                    <img id="icon4" width="60px"></img>
+                    <p id="temp4"></p>
+                    <p id="wind4"></p>
+                    <p id="humid4"></p>
+                </div>
+                <div id="day">
+                    <h4 id="date5"></h4>
+                    <img id="icon5" width="60px"></img>
+                    <p id="temp5"></p>
+                    <p id="wind5"></p>
+                    <p id="humid5"></p>
+                </div>
+                <div id="day">
+                    <h4 id="date6"></h4>
+                    <img id="icon6" width="60px"></img>
+                    <p id="temp6"></p>
+                    <p id="wind6"></p>
+                    <p id="humid6"></p>
+                </div>
+            </div>
+        </div>
+
+
+    </main>
+    <script>dayjs().format()</script>
+    <script src="script.js"></script>
+</body>
+</html>

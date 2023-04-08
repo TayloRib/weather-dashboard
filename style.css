@@ -1,0 +1,125 @@
+html {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    margin: 0;
+}
+
+header {
+    background-image: linear-gradient(to right, rgb(52, 112, 168) , rgb(25, 30, 90));
+    color: white;
+    top: 0;
+    position: absolute;
+    width: 100%;
+}
+
+h1 {
+    line-height: .3em;
+    text-align: center;
+}
+
+#city {
+    position: absolute;
+    margin-top: 55px;
+    width: 300px;
+    height: 90vh;
+}
+
+form {
+    text-align: center;
+}
+
+h2 {
+    text-align: left;
+    margin-left: 10px;
+    margin: 5px;
+    font-size: 28px;
+}
+
+#searchinput {
+    width: 90%;
+    margin-left: 0px;
+    padding: 7px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+#search {
+    align-self: center;
+    margin-top: 10px;
+    background-color: rgb(31, 172, 228);
+    width: 95%;
+    margin-left: 0;
+    padding: 5px;
+    border: none;
+    color: white;
+    border-radius: 3px;
+    margin-top: 15px;
+    margin-bottom: 8px;
+}
+
+hr {
+    width: 95%;
+}
+
+#weatherdata {
+    position: absolute;
+    margin-left: 315px;
+    margin-top: 55px;
+    width: 70%;
+    height: 90vh;
+}
+
+#cityinfo {
+    width: 100%;
+    height: 200px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border: 1px solid black;
+}
+
+#forcast {
+    width: 100%;
+}
+
+h3 {
+    font-size: 22px;
+    margin: 0;
+}
+
+h4 {
+    margin: 0;
+}
+
+#cardholder {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    height: 200px;
+    justify-content: space-between;
+}
+
+#day {
+    width: 17%;
+    background-color: rgb(179, 179, 204);
+    color: white;
+    border: 1px solid rgb(90, 90, 90);
+}
+
+p {
+    margin: 9px;
+    margin-left: 5px;
+}
+
+#date2, #date3, #date4, #date5, #date6 {
+    padding-left: 5px;
+    margin-top: 5px;
+    font-size: 20px;
+}
+
+img {
+    margin: 0;
+}
