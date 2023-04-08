@@ -77,7 +77,7 @@ function renderCityData(){
 
     var inputValue = searchInput.value;
     //get city name and lat and long data
-    var locationUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + inputValue + "&appid=4c50997e952beae527644e8960606170";
+    var locationUrl = "https://api.openweathermap.org/geo/1.0/direct?q=" + inputValue + "&appid=4c50997e952beae527644e8960606170";
 
     fetch (locationUrl)
         .then (function (response) {
@@ -92,7 +92,7 @@ function renderCityData(){
              cityEl.textContent = data[0].name + " " + dayjs().format("(M/DD/YYYY)");
 
         //get additional data using lat and long
-        var additionalUrl = "http://api.openweathermap.org/data/2.5/forecast?lat=" + cityLat + "&lon=" + cityLong + "&appid=4c50997e952beae527644e8960606170"
+        var additionalUrl = "https://api.openweathermap.org/data/2.5/forecast?lat=" + cityLat + "&lon=" + cityLong + "&appid=4c50997e952beae527644e8960606170"
 
         fetch (additionalUrl)
             .then (function (response) {
