@@ -1,6 +1,8 @@
 var weatherDiv = document.querySelector("#weatherdata");
-
 var buttonEl = document.querySelector("#search");
+var cityDiv = document.querySelector("#cityButtons");
+var searchInput = document.querySelector("#searchinput");
+
 var cityEl = document.querySelector("#cityname");
 var todayDate = document.querySelector('#date');
 var todayTemp = document.querySelector('#temp');
@@ -40,16 +42,42 @@ var fiveHumid = document.querySelector('#humid6');
 
 function getApi(event) {
     event.preventDefault();
-
+    //Display city Data Div
     if (weatherDiv.style.display === "none") {
         weatherDiv.style.display = "block";
-    } else weatherDiv.style.display = "none";
+    }
     
-    var inputValue = document.querySelector("#searchinput").value;
+    //Convert City name to Local Storage
+    var cityText = document.querySelector("#searchinput");
+    var cityData = JSON.stringify(cityText.value);
+
+    localStorage.setItem("cityName", cityData);
+
+    function showCityButton (){
+        var cityButtonText = JSON.parse(localStorage.getItem("cityName"));
+        var cityButton = document.createElement("button");
+        cityButton.textContent = cityButtonText;
+        cityDiv.append(cityButton);
+        cityButton.setAttribute("Class", "citybutton");
+        cityButton.setAttribute("id", "newcitybutton");
+
+        cityButton.addEventListener("click", showPreviousCity);
+
+        function showPreviousCity(event){
+            event.preventDefault();
+            searchInput.value = cityButton.textContent;
+            renderCityData();
+        }
+    }
+
+    showCityButton();
+    renderCityData();
+
+function renderCityData(){
+
+    var inputValue = searchInput.value;
     //get city name and lat and long data
     var locationUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + inputValue + "&appid=4c50997e952beae527644e8960606170";
-    
-    console.log(locationUrl);
 
     fetch (locationUrl)
         .then (function (response) {
@@ -59,15 +87,12 @@ function getApi(event) {
             //assign variables for lat long
             var cityLat = data[0].lat 
             var cityLong = data[0].lon
-            console.log(cityLat);
-            console.log(cityLong);
+            
             //render name and current date data
              cityEl.textContent = data[0].name + " " + dayjs().format("(M/DD/YYYY)");
 
         //get additional data using lat and long
         var additionalUrl = "http://api.openweathermap.org/data/2.5/forecast?lat=" + cityLat + "&lon=" + cityLong + "&appid=4c50997e952beae527644e8960606170"
-
-        console.log(additionalUrl);
 
         fetch (additionalUrl)
             .then (function (response) {
@@ -75,7 +100,6 @@ function getApi(event) {
         })
         .then (function (data){
 
-            console.log(data);
             //data for today
             var iconToday = data.list[0].weather[0].icon;
             todayIcon.setAttribute("src", "https://openweathermap.org/img/wn/" + iconToday + "@2x.png");
@@ -86,7 +110,8 @@ function getApi(event) {
             todayTemp.textContent = "Temp: " + tempF + "°F";
 
             var windSpeed = data.list[0].wind.speed;
-            todayWind.textContent = "Wind: " + windSpeed + " MPH";
+            var windMPH = windSpeed*2.2369;
+            todayWind.textContent = "Wind: " + windMPH.toFixed(2) + " MPH";
 
             var hummidity = data.list[0].main.humidity;
             todayHumid.textContent = "Humidity: " + hummidity + "%";
@@ -105,7 +130,8 @@ function getApi(event) {
             tomorrowTemp.textContent = "Temp: " + tempTomorrowF + "°F";
 
             var windTomorrow = data.list[8].wind.speed;
-            tomorrowWind.textContent = "Wind: " + windTomorrow + " MPH";
+            var windMPHTomorrow = windTomorrow*2.2369;
+            tomorrowWind.textContent = "Wind: " + windMPHTomorrow.toFixed(2) + " MPH";
 
             var humidityTomorrow = data.list[8].main.humidity;
             tomorrowHumid.textContent = "Humidity: " + humidityTomorrow + "%";
@@ -124,7 +150,8 @@ function getApi(event) {
             twoDayTemp.textContent = "Temp: " + tempTwoDayF + "°F";
 
             var windTwoDay = data.list[16].wind.speed;
-            twoDayWind.textContent = "Wind: " + windTwoDay + " MPH";
+            var windMPHTwoDay= windTwoDay*2.2369;
+            twoDayWind.textContent = "Wind: " + windMPHTwoDay.toFixed(2) + " MPH";
 
             var humidityTwoDay = data.list[16].main.humidity;
             twoDayHumid.textContent = "Humidity: " + humidityTwoDay + "%";
@@ -143,7 +170,8 @@ function getApi(event) {
             threeDayTemp.textContent = "Temp: " + tempThreeDayF + "°F";
 
             var windThreeDay = data.list[24].wind.speed;
-            threeWind.textContent = "Wind: " + windThreeDay + " MPH";
+            var windMPHThreeDay= windThreeDay*2.2369;
+            threeWind.textContent = "Wind: " + windMPHThreeDay.toFixed(2) + " MPH";
 
             var humidityThreeDay = data.list[24].main.humidity;
             threeHumid.textContent = "Humidity: " + humidityThreeDay + "%";
@@ -162,7 +190,8 @@ function getApi(event) {
             fourDayTemp.textContent = "Temp: " + tempfourDayF + "°F";
 
             var windfourDay = data.list[32].wind.speed;
-            fourWind.textContent = "Wind: " + windfourDay + " MPH";
+            var windMPHFourDay= windfourDay*2.2369;
+            fourWind.textContent = "Wind: " + windMPHFourDay.toFixed(2) + " MPH";
 
             var humidityfourDay = data.list[32].main.humidity;
             fourHumid.textContent = "Humidity: " + humidityfourDay + "%";
@@ -181,7 +210,8 @@ function getApi(event) {
             fiveDayTemp.textContent = "Temp: " + tempfiveDayF + "°F";
 
             var windfiveDay = data.list[39].wind.speed;
-            fiveWind.textContent = "Wind: " + windfiveDay + " MPH";
+            var windMPHFiveDay= windfiveDay*2.2369;
+            fiveWind.textContent = "Wind: " + windMPHFiveDay.toFixed(2) + " MPH";
 
             var humidityfiveDay = data.list[39].main.humidity;
             fiveHumid.textContent = "Humidity: " + humidityfiveDay + "%";
@@ -193,6 +223,13 @@ function getApi(event) {
         });
 
 }
+}
 
 //when you click the search button pull data 
 buttonEl.addEventListener("click", getApi);
+
+searchInput.addEventListener("click", clearInputField)
+
+function clearInputField(){
+    searchInput.value = "";
+}
